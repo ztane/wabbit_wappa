@@ -1,5 +1,1 @@
 pexpect
-pytest
-cookiecutter
-wheel>=0.22
-pip>=1.4

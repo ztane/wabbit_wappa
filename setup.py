@@ -11,28 +11,20 @@ try:
 except ImportError:
     from distutils.core import setup, find_packages
 
-from pip.req import parse_requirements
-
-if sys.argv[-1] == 'publish':
-    os.system('python setup.py sdist upload')
-    sys.exit()
-
-# http://stackoverflow.com/questions/14399534/how-can-i-reference-requirements-txt-for-the-install-requires-kwarg-in-setuptool
-install_reqs = parse_requirements('requirements.txt')
-req_list = [str(ir.req) for ir in install_reqs]
-
 readme = open('README.rst').read()
+
 # doclink = """
 # Documentation
 # -------------
 #
 # The full documentation is at http://wabbit_wappa.rtfd.org."""
+
 doclink = ''
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 setup(
     name='wabbit_wappa',
-    version='0.3.0',
+    version='0.3.1-dev',
     description='Wabbit Wappa is a full-featured Python wrapper for the Vowpal Wabbit machine learning utility.',
     long_description=readme + '\n\n' + doclink + '\n\n' + history,
     author="Michael J.T. O'Kelly",
@@ -41,7 +33,9 @@ setup(
     packages=find_packages(exclude=['test*']),
     package_dir={'wabbit_wappa': 'wabbit_wappa'},
     include_package_data=True,
-    install_requires=req_list,
+    install_requires=[
+        'pexpect'
+    ],
     license='MIT',
     keywords='wabbit_wappa',
     classifiers=[
